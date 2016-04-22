@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 22, 2016 at 03:48 PM
+-- Generation Time: Apr 22, 2016 at 04:01 PM
 -- Server version: 5.6.30-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.2
 
@@ -29,12 +29,12 @@ SET time_zone = "+00:00";
 CREATE TABLE `userdetails` (
   `fname` varchar(100) NOT NULL,
   `lname` int(100) DEFAULT NULL,
-  `dob` date DEFAULT NULL,
+  `dob` date NOT NULL,
+  `country` enum('Sri Lanka','Japan','United Kingdom','United States','Australia') NOT NULL,
   `email` varchar(100) NOT NULL,
   `mnumber` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
-  `password` int(100) NOT NULL,
-  `country` varchar(20) NOT NULL
+  `password` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -58,6 +58,12 @@ INSERT INTO `users` (`username`, `password`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `userdetails`
+--
+ALTER TABLE `userdetails`
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `users`
