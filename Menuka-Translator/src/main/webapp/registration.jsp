@@ -16,7 +16,7 @@
 </head>
 <body>
 
-<form class="form-horizontal" onsubmit="event.preventDefault(); confirmPass();">
+<form action="AddUser" method="post" class="form-horizontal" onsubmit="event.preventDefault(); confirmPass();">
     <fieldset>
 
         <!-- Form Name -->
@@ -27,6 +27,8 @@
 
 
         <!-- Text input-->
+
+
         <div class="form-group">
             <label class="col-md-4 control-label" for="fname">First Name</label>
 
@@ -137,7 +139,7 @@
     </fieldset>
 </form>
 
-</form>
+
 </div>
 
 <script>

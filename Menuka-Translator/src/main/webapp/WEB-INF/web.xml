@@ -35,5 +35,14 @@
         <servlet-name>logout</servlet-name>
         <url-pattern>/LogOut</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>adduser</servlet-name>
+        <servlet-class>hsenid.AddUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>adduser</servlet-name>
+        <url-pattern>/AddUser</url-pattern>
+    </servlet-mapping>
 
 </web-app>

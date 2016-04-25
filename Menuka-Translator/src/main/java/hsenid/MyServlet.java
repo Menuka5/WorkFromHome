@@ -47,12 +47,12 @@ public class MyServlet extends HttpServlet {
             String password = request.getParameter("password");
             logger.info("received the credentials from the index.jsp ");
             RequestDispatcher view = request.getRequestDispatcher("/translate.jsp");
-            Connection test2 = (Connection)getServletContext().getAttribute("DBConnection");
+            DBConnector dbPool = (DBConnector)getServletContext().getAttribute("DBConnection");
 
             try {
 
                 request.setAttribute("Error", "You haven't provide valid username or Password!!! ");
-                LoginCheck statusVal = new LoginCheck(test2);
+                LoginCheck statusVal = new LoginCheck(dbPool.getConn());
                 status = statusVal.checking(username, password);
 
                 if (status) {
@@ -60,7 +60,6 @@ public class MyServlet extends HttpServlet {
                     HttpSession session = request.getSession(true);
                     session.setAttribute("username", username);
                     view.forward(request, resp);
-
 
                 } else {
                     logger.error("Illegal credentials provided, login failed!");
@@ -71,9 +70,6 @@ public class MyServlet extends HttpServlet {
                 logger.error("MyServlet inner try_catch SQLException", e);
 
             }
-        } catch (NoSuchAlgorithmException e) {
-            logger.error("MyServlet SoSuchAlgorithmException!!!", e);
-
         } catch (IOException e) {
             logger.error("MyServlet IOException!!!", e);
             throw new IOException();

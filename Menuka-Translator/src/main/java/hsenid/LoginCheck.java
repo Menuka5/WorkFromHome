@@ -22,19 +22,38 @@ public class LoginCheck {
 
     }
 
-    public boolean checking(String uName, String pWord) throws SQLException, UnsupportedEncodingException, NoSuchAlgorithmException {
+    public boolean checking(String uName, String pWord) {
 
         logger.info("LoginCheck, Checking Login Credentials");
         logger.error("Error Test LoginCheck.java");
-        ResultSet rs = null;
+        boolean returnValur = false;
+        ResultSet rs;
 
-        String hashedPass = HashClass.SHA1(pWord);
-        PreparedStatement pst = myConn.prepareStatement("select * from users where username=? and password=?");
-        pst.setString(1, uName);
-        pst.setString(2, hashedPass);
-        rs = pst.executeQuery();
 
-        return rs.next();
+
+        try {
+            String hashedPass = HashClass.SHA1(pWord);
+            PreparedStatement pst = myConn.prepareStatement("select * from users where username=? and password=?");
+            pst.setString(1, uName);
+            pst.setString(2, hashedPass);
+            rs = pst.executeQuery();
+            returnValur = rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                myConn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return returnValur;
+
     }
 
 }

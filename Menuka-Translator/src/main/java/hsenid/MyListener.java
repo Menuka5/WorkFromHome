@@ -29,7 +29,7 @@ public class MyListener implements ServletContextListener {
 
         try {
             db = new DBConnector();
-            test1.setAttribute("DBConnection", db.getConn());
+            test1.setAttribute("DBConnection", db);
             logger.trace("DBConnection created!!!");
             
         } catch (IOException e) {
