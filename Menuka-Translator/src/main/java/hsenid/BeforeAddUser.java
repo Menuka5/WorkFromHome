@@ -8,17 +8,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by hsenid on 4/25/16.
+ * This class is need because we need to Check unique Username in Add User Form
  */
-public class AddUser extends HttpServlet {
+public class BeforeAddUser extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html");
+
         PrintWriter out = resp.getWriter();
-
-
-        String firstname = request.getParameter("fname");
-
-        out.println(firstname);
+        out.println("Success");
     }
 }

@@ -31,7 +31,7 @@ public class MyServlet extends HttpServlet {
      */
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws IOException, ServletException {
         resp.setContentType("text/html"); // Set output as html
 
         PreparedStatement pst = null;
