@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,10 +26,9 @@
                     
                 </div>
 
-                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Translator <span class="sr-only">(current)</span></a></li>
+                        <li class="active"><a href="translate.jsp">Translator <span class="sr-only">(current)</span></a></li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User Management<span class="caret"></span></a>
@@ -38,7 +37,7 @@
                                     <a href="registration.jsp">Add User</a>
 
                                 </li>
-                                <li><a href="#">Search User</a></li>
+                                <li><a href="SearchUser">Search User</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">Delete User</a></li>
                             </ul>
@@ -46,8 +45,8 @@
                     </ul>
 
 
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+            </div>
         </nav>
     </div>
 
