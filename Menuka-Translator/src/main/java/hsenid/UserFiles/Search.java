@@ -23,9 +23,12 @@ public class Search extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
+
+/*
+        resp.setContentType("application/json");
+
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String username = req.getParameter("searchword");
@@ -34,34 +37,36 @@ public class Search extends HttpServlet {
         logger.info(username);
         try {
             Connection myConn = dbpool.getConn();
-            String likeQuery = "Select * from userdetails WHERE username LIKE ?";
-            preparedStatement = myConn.prepareStatement(likeQuery);
-            preparedStatement.setString(1, "%" + username + "%");
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("firstName", resultSet.getString("fname"));
-                jsonObject.addProperty("lastName", resultSet.getString("lname"));
-                jsonObject.addProperty("dob", resultSet.getString("dob"));
-                jsonObject.addProperty("country", resultSet.getString("country"));
-                jsonObject.addProperty("email", resultSet.getString("email"));
-                jsonObject.addProperty("mobile", resultSet.getString("mnumber"));
-                jsonObject.addProperty("username", resultSet.getString("username"));
-
-                jsonArray.add(jsonObject);
-
-            }
-            logger.info("JSON ARRAY Created");
-
-            logger.info(jsonArray.toString());
+//            String likeQuery = "Select * from userdetails WHERE username LIKE" + " '%" + username + "%'";
+//            logger.info(likeQuery);
+//            preparedStatement = myConn.prepareStatement(likeQuery);
+////            preparedStatement.setString(1, "%" + username + "%");
+//            resultSet = preparedStatement.executeQuery();
+//
+//            while (resultSet.next()) {
+//                JsonObject jsonObject = new JsonObject();
+//                jsonObject.addProperty("firstName", resultSet.getString("fname"));
+//                jsonObject.addProperty("lastName", resultSet.getString("lname"));
+//                jsonObject.addProperty("dob", resultSet.getString("dob"));
+//                jsonObject.addProperty("country", resultSet.getString("country"));
+//                jsonObject.addProperty("email", resultSet.getString("email"));
+//                jsonObject.addProperty("mobile", resultSet.getString("mnumber"));
+//                jsonObject.addProperty("username", resultSet.getString("username"));
+//
+//                jsonArray.add(jsonObject);
+//
+//            }
+//            logger.info("JSON ARRAY Created");
+//
+//            logger.info(jsonArray.toString());
 
 //            resp.getWriter().write(jsonArray.toString());
-            out.println(jsonArray);
+            out.println("Test String sent");
 
         } catch (SQLException e) {
             logger.error(e.getMessage());
-        }
+        }*/
 
+        out.println("Test String Sent");
     }
 }

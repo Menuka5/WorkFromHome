@@ -3,12 +3,12 @@
 <head>
     <title>Search a User</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-<form method="post" class="form-horizontal">
+<form class="form-horizontal">
     <fieldset>
 
 
@@ -32,15 +32,18 @@
 
 <script type="text/javascript">
     $(document).ready(function() {
+
         $('#search1').click(function ()
-        {console.debug('');
+        {
             var searchdata = $("#searchword").val();
+            console.log(searchdata);
             $.ajax({
                 type: "GET",
-                url: "Search", //this is my servlet
-                data: {searchword :searchdata },
+                url: "http://localhost:8080/Search", //this is my servlet
+                content: "application/json",
+                data: {"searchword" :searchdata },
                 success: function(data){
-                    var out = "<table>";
+                    /*var out = "<table>";
 
                     for(i = 0; i < data.length; i++) {
                         out += "<tr><td>" +
@@ -57,8 +60,11 @@
                                 data[i].mnumber +
                                 "</td></tr>";
                     }
-                    out += "</table>";
-                    document.getElementById("id01").innerHTML = out;
+                    out += "</table>";*/
+                    console.log(data);
+                },
+                error: function(data){
+                    alert("Error function");
                 }
             });
         });
