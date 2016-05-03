@@ -5,9 +5,27 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#call').click(function ()
+            {
+                $.ajax({
+                    type: "post",
+                    url: "Search", //this is my servlet
+                    data: "input=" +$('#ip').val()+"&output="+$('#op').val(),
+                    success: function(msg){
+                        $('#output').append(msg);
+                    }
+                });
+            });
+
+        });
+    </script>
 </head>
 <body>
-<form action="Search" method="post" class="form-horizontal">
+
+
+<form method="post" class="form-horizontal">
     <fieldset>
 
 
@@ -23,7 +41,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for=""></label>
             <div class="col-md-3">
-                <button id="" name="" class="btn btn-block btn-success">Search</button>
+                <button id="search1" name="" class="btn btn-block btn-success">Search</button>
             </div>
         </div>
 

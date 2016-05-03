@@ -3,6 +3,8 @@ package hsenid.UserFiles;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import hsenid.DBConnector;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,17 +18,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Search extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(Search.class);
+
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.setContentType("text/html");
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         String username = req.getParameter("searchword");
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
         JsonArray jsonArray = new JsonArray();
-
+        logger.info(username);
         try {
             Connection myConn = dbpool.getConn();
             String likeQuery = "Select * from userdetails WHERE username LIKE ?";
@@ -47,9 +52,15 @@ public class Search extends HttpServlet {
                 jsonArray.add(jsonObject);
 
             }
+            logger.info("JSON ARRAY Created");
+
+            logger.info(jsonArray.toString());
+
+//            resp.getWriter().write(jsonArray.toString());
             out.println(jsonArray);
+
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
     }

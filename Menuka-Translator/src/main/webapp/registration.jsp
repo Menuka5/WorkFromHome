@@ -64,7 +64,7 @@
             <div class="col-md-4">
                 <select id="selectbasic" name="country" class="form-control">
                     <option value="Sri Lanka">Sri Lanka</option>
-                    <option value="Japan">Japanese</option>
+                    <option value="Japan">Japan</option>
                     <option value="United Kingdom">United Kingdom</option>
                     <option value="United States">United States</option>
                     <option value="Australia">Australia</option>
@@ -72,7 +72,6 @@
             </div>
         </div>
 
-        <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="email">Email</label>
 
@@ -83,7 +82,6 @@
             </div>
         </div>
 
-        <!-- Text input-->
         <div class="form-group">
             <label class="col-md-4 control-label" for="mnumber">Mobile Number</label>
 
