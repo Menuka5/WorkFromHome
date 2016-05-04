@@ -1,6 +1,5 @@
 package hsenid.UserFiles;
 
-
 import hsenid.DBConnector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,13 +17,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Search extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger(Search.class);
 
+public class AllData extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(AllData.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
         PreparedStatement preparedStatement = null;
@@ -36,15 +34,15 @@ public class Search extends HttpServlet {
         logger.info(username);
         try {
             Connection myConn = dbpool.getConn();
-            String likeQuery = "Select * from userdetails WHERE username LIKE ?";
+            String likeQuery = "SELECT * FROM userdetails";
             preparedStatement = myConn.prepareStatement(likeQuery);
-            preparedStatement.setString(1, "%" + username + "%");
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 JSONObject jsonObject = new JSONObject();
 //                JsonObject jsonObject = new JsonObject();
                 jsonObject.put("firstName", resultSet.getString("fname"));
+                logger.info(resultSet.getString("fname"));
                 jsonObject.put("lastName", resultSet.getString("lname"));
                 jsonObject.put("dob", resultSet.getString("dob"));
                 jsonObject.put("country", resultSet.getString("country"));
@@ -66,6 +64,5 @@ public class Search extends HttpServlet {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         }
-
     }
 }

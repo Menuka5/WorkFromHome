@@ -5,6 +5,7 @@ import hsenid.HashClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,7 @@ public class AddUser extends HttpServlet {
             preparedStatement.setString(8, password);
             preparedStatement.executeUpdate();
             logger.info("Data insertion complete!!!");
-
+            request.getRequestDispatcher("/UserAddSuccess.jsp").forward(request, resp);
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } catch (NoSuchAlgorithmException e) {

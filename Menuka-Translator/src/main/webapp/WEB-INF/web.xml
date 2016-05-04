@@ -71,5 +71,14 @@
         <servlet-name>Search</servlet-name>
         <url-pattern>/Search</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>AllData</servlet-name>
+        <servlet-class>hsenid.UserFiles.AllData</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AllData</servlet-name>
+        <url-pattern>/AllData</url-pattern>
+    </servlet-mapping>
 
 </web-app>

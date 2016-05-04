@@ -5,11 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Add User</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
 
-    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css"/>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+
     <script type="text/javascript"
             src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet"
@@ -53,7 +55,7 @@
 
             <div class="col-md-5">
                 <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" class="form-control input-md"
-                       type="text" required/>
+                       type="text" required readonly/>
                 <span class="help-block">Click on year to select year</span>
             </div>
         </div>
