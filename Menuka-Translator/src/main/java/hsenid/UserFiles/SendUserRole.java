@@ -17,42 +17,43 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CitySender extends HttpServlet {
-    private static final Logger logger = LogManager.getLogger(CitySender.class);
+public class SendUserRole extends HttpServlet {
+    private static final Logger logger = LogManager.getLogger(SendUserRole.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         PrintWriter out = resp.getWriter();
+
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String country = req.getParameter("country");
-        logger.info(country);
         DBConnector dbpool = (DBConnector) getServletContext().getAttribute("DBConnection");
         JSONArray jsonArray = new JSONArray();
 
         Connection myConn = null;
+
         try {
             myConn = dbpool.getConn();
-            String query = "SELECT city.city, city.city_id FROM city INNER JOIN country ON country.country_id=city.country_id where country.country=?";
+            String query = "SELECT * FROM group_name";
+
             preparedStatement = myConn.prepareStatement(query);
-            preparedStatement.setString(1, country);
             resultSet = preparedStatement.executeQuery();
 
 
             while (resultSet.next()) {
                 JSONObject jsonObject = new JSONObject();
 
-                jsonObject.put("city_id", resultSet.getString("city.city_id"));
-                jsonObject.put("city", resultSet.getString("city.city"));
+                jsonObject.put("group_id", resultSet.getString("group_id"));
+                jsonObject.put("group_name", resultSet.getString("group_name"));
 
                 jsonArray.put(jsonObject);
-                logger.info(jsonObject);
+
             }
-            logger.info("Out of while loop");
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
+
+        logger.info(jsonArray);
 
         out.print(jsonArray);
         out.flush();

@@ -34,7 +34,7 @@ public class AllData extends HttpServlet {
         logger.info(username);
         try {
             Connection myConn = dbpool.getConn();
-            String likeQuery = "SELECT * FROM userdetails";
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id";
             preparedStatement = myConn.prepareStatement(likeQuery);
             resultSet = preparedStatement.executeQuery();
 
@@ -49,6 +49,7 @@ public class AllData extends HttpServlet {
                 jsonObject.put("email", resultSet.getString("email"));
                 jsonObject.put("mobile", resultSet.getString("mnumber"));
                 jsonObject.put("username", resultSet.getString("username"));
+                jsonObject.put("userRole", resultSet.getString("group_name"));
 
                 jsonArray.put(jsonObject);
 

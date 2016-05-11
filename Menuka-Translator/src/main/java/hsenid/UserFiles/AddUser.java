@@ -5,7 +5,6 @@ import hsenid.HashClass;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +31,7 @@ public class AddUser extends HttpServlet {
         String firstname = request.getParameter("fname");
         String lastname = request.getParameter("lname");
         String dob = request.getParameter("date");
+        String groupId = request.getParameter("userRole");
         dob = dob.replaceAll("/", "-");
         String country = request.getParameter("country");
         String email = request.getParameter("email");
@@ -40,7 +40,7 @@ public class AddUser extends HttpServlet {
         String city_id = request.getParameter("states");
         String password = null;
 
-        String query = "insert into userdetails (fname, lname, dob, country, email, mnumber, username, password, city_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "insert into userdetails (fname, lname, dob, country, email, mnumber, username, password, city_id, group_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         DBConnector dbPool = (DBConnector) getServletContext().getAttribute("DBConnection");
@@ -57,6 +57,7 @@ public class AddUser extends HttpServlet {
             preparedStatement.setString(7, username);
             preparedStatement.setString(8, password);
             preparedStatement.setString(9, city_id);
+            preparedStatement.setString(10, groupId);
             preparedStatement.executeUpdate();
             logger.info("Data insertion complete!!!");
             request.getRequestDispatcher("/UserAddSuccess.jsp").forward(request, resp);
@@ -71,10 +72,11 @@ public class AddUser extends HttpServlet {
         out.println("Last Name -> " + lastname + "<br>");
         out.println("Date -> " + dob + "<br>");
         out.println("Country -> " + country + "<br>");
-        out.println("Country -> " + city_id + "<br>");
+        out.println("City -> " + city_id + "<br>");
         out.println("Mobile -> " + mnumber + "<br>");
         out.println("email -> " + email + "<br>");
         out.println("username -> " + username + "<br>");
         out.println("Password -> " + password + "<br>");
+        out.println("groupId -> " + groupId + "<br>");
     }
 }

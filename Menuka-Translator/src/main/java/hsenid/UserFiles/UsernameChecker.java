@@ -30,7 +30,7 @@ public class UsernameChecker extends HttpServlet {
             myConn = dbpool.getConn();
             String likeQuery = "Select * from userdetails WHERE username=?";
             preparedStatement = myConn.prepareStatement(likeQuery);
-            preparedStatement.setString(1,username);
+            preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
 
             jsonObject.put("boolVal", resultSet.next());

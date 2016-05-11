@@ -36,7 +36,9 @@ public class Search extends HttpServlet {
         logger.info(username);
         try {
             Connection myConn = dbpool.getConn();
-            String likeQuery = "Select * from userdetails WHERE username LIKE ?";
+//            SELECT * FROM userdetails INNER JOIN group_name ON userdetails.group_id=group_name.group_id
+            String likeQuery = "SELECT * FROM userdetails LEFT JOIN group_name ON userdetails.group_id=group_name.group_id WHERE username LIKE ?";
+//            String groupQuery = "Select group_name from group_name WHERE group_id = ?";
             preparedStatement = myConn.prepareStatement(likeQuery);
             preparedStatement.setString(1, "%" + username + "%");
             resultSet = preparedStatement.executeQuery();
@@ -51,6 +53,7 @@ public class Search extends HttpServlet {
                 jsonObject.put("email", resultSet.getString("email"));
                 jsonObject.put("mobile", resultSet.getString("mnumber"));
                 jsonObject.put("username", resultSet.getString("username"));
+                jsonObject.put("userRole", resultSet.getString("group_name"));
 
                 jsonArray.put(jsonObject);
 
