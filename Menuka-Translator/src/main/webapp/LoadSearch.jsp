@@ -8,179 +8,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 
-<%--
-    <script>
-        $(document).ready(function(){
-            $("#deleteUserData").click(function(){
-                var delUser = $("#username").val();
-
-
-            });
-        });
-    </script>--%>
-
-
-
-
-    <script>
-        function operateFormatter(value, row, index) {
-            return [
-
-                '<a class="remove ml10 btn btn-danger btn-large" href="javascript:void(0)" title="Remove">', 'Delete',
-                '<i class="glyphicon glyphicon-remove"></i>',
-                '</a>'
-            ].join('');
-        }
-
-        window.operateEvents = {
-            'click .remove': function (e, value, row, index) {
-                var jstring = JSON.stringify(row);
-                var obj = JSON.parse(jstring);
-
-//                alert(jstring);
-
-                $("#username").text(obj.username);
-
-                $("#deleteUser").modal("show");
-
-            }
-        };
-    </script>
-
-
-    <script>
-        $(document).ready(function () {
-
-            $.ajax({
-
-                // The URL for the request
-                url: "AllData",
-
-                // Whether this is a POST or GET request
-                type: "GET",
-
-                // The type of data we expect back
-                dataType: "json",
-                success: function (data2) {
-
-                    $('#table').bootstrapTable({
-                        method: 'get',
-                        data: data2,
-                        striped: true,
-                        pagination: true,
-                        pageSize: 10,
-                        pageList: [10, 25, 50, 100, 200],
-                        search: false,
-                        showColumns: false,
-                        showRefresh: false,
-                        height: 500,
-                        minimumCountColumns: 2,
-                        columns: [{
-                            field: 'firstName',
-                            title: 'First Name',
-                            align: 'left',
-                            valign: 'bottom',
-                            sortable: true
-                        }, {
-                            field: 'lastName',
-                            title: 'Last Name',
-                            align: 'left',
-                            valign: 'middle',
-                            sortable: true,
-
-                        }, {
-                            field: 'country',
-                            title: 'Country',
-                            align: 'left',
-                            valign: 'top',
-                            sortable: true,
-
-                        }, {
-                            field: 'dob',
-                            title: 'Date of Birth',
-                            align: 'Center',
-                            valign: 'bottom',
-                            sortable: true
-                        }, {
-                            field: 'mobile',
-                            title: 'Mobile',
-                            align: 'Center',
-                            valign: 'bottom',
-                            sortable: true
-                        }, {
-                            field: 'email',
-                            title: 'Email',
-                            align: 'left',
-                            valign: 'bottom',
-                            sortable: true
-                        }, {
-                            field: 'username',
-                            title: 'Username',
-                            align: 'left',
-                            valign: 'bottom',
-                            sortable: true
-                        }, {
-                            field: 'userRole',
-                            title: 'User Role',
-                            align: 'left',
-                            valign: 'bottom',
-                            sortable: true
-                        }, {
-                            field: 'operate',
-                            title: 'Delete User',
-                            align: 'center',
-                            valign: 'middle',
-                            formatter: operateFormatter,
-                            events: operateEvents
-                        }]
-                    });
-
-
-                },
-                error: function (data) {
-                    console.log(data);
-                }
-            })
-
-        });
-    </script>
-    <%-- On click Table--%>
-    <script>
-        $(document).ready(function () {
-
-            $("#deleteUserData").click(function () {
-                var deleteUser = $("#username").text();
-                alert(deleteUser);
-                $.ajax({
-
-                    // The URL for the request
-                    url: "DeleteUser",
-
-                    // The data to send (will be converted to a query string)
-                    data: {
-                        delete: deleteUser
-                    },
-
-                    // Whether this is a POST or GET request
-                    type: "GET",
-
-                    // The type of data we expect back
-                    success: function (data2) {
-                        alert("User " + deleteUser +"Successfully deleted!!!");
-                    },
-                    error: function (data) {
-                        console.log(data);
-                    }
-                })
-
-            });
-        });
-    </script>
-
+    <script src="js/LoadSearch.js"></script>
 
 </head>
 <body>
@@ -208,7 +44,7 @@
             </div>
             <div class="modal-body">
 
-                <p>Do you want to delete <label id="username"></label>
+                <p>Do you want to delete <label id="username2"></label>
                      </p>
                 <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteUserData">Delete</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
@@ -218,5 +54,150 @@
     </div>
 </div>
 
+<%--Update user modal--%>
+
+<div class="modal fade" id="updateUserProfile" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <form action="AddUser" method="post" class="form-horizontal" onsubmit="confirmPass();">
+                    <fieldset>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="fname">First Name</label>
+
+                            <div class="col-md-5">
+                                <input id="fname" name="fname" type="text" placeholder="You First Name" class="form-control input-md"
+                                       required="dsfsdffsa">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="lname">Last Name</label>
+
+                            <div class="col-md-5">
+                                <input id="lname" name="lname" type="text" placeholder="Your Last Name" class="form-control input-md">
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="date">Date of Birth</label>
+
+                            <div class="col-md-5">
+                                <input class="form-control" id="date" name="date" placeholder="YYYY/MM/DD" class="form-control input-md"
+                                       type="text" required readonly/>
+                                <span class="help-block">Click on year to select year</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="selectbasic">Country</label>
+
+                            <div class="col-md-4">
+                                <select id="country" name="country" class="form-control">
+                                    <option>Select Country</option>
+                                    <option value="Sri Lanka">Sri Lanka</option>
+                                    <option value="Japan">Japan</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="United States">United States</option>
+                                    <option value="Australia">Australia</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="states">City</label>
+
+                            <div class="col-md-4">
+                                <select id="states" name="states" class="form-control">
+                                    <option>Select City</option>
+                                </select>
+                                <span class="help-block">First Select the country to get cities</span>
+                            </div>
+                        </div>
+
+                        <%--Birthday --%>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="email">Email</label>
+
+                            <div class="col-md-5">
+                                <input id="email" name="email" type="email" placeholder="Type Your Email Here"
+                                       class="form-control input-md" value="menuka@gmail.com" required="">
+
+                            </div>
+                        </div>
+
+                        <%-- Mobile number--%>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="mnumber">Mobile Number</label>
+
+                            <div class="col-md-5">
+                                <input id="mnumber" name="mnumber" type="text" pattern="[0-9]{11}" placeholder="Your Mobile Number"
+                                       class="form-control input-md" required="" maxlength=”11” value="94716310375">
+                                <span class="help-block">with country code. Ex: Sri lanka 94...</span>
+                            </div>
+                        </div>
+
+                        <!-- User role-->
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="userRole">User Role</label>
+
+                            <div class="col-md-4">
+                                <select id="userRole" name="userRole" class="form-control">
+                                    <option>Select User role</option>
+                                </select>
+                                <span class="help-block">Select a user role</span>
+                            </div>
+                        </div>
+
+                        <!-- Username-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="username">Username</label>
+
+                            <div class="col-md-5">
+                                <input id="username" name="username" type="text" placeholder="Type a Unique Username"
+                                       class="form-control input-md" required="" readonly>
+                            </div>
+
+                            <diV id="usernamemsg"></diV>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="sbtn"></label>
+
+                            <div class="col-md-4">
+                                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()">Update user</button>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    var date_input = $('input[name="date"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    var options = {
+        format: "yyyy/mm/dd",
+        container: container,
+        startView: 2,
+        daysOfWeekHighlighted: "0,6",
+        defaultViewDate: {year: 1990, month: 01, day: 01}
+
+    };
+    date_input.datepicker(options);
+</script>
 </body>
 </html>

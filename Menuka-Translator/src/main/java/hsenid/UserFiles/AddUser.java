@@ -40,14 +40,17 @@ public class AddUser extends HttpServlet {
         String city_id = request.getParameter("states");
         String password = null;
 
+        Connection myConn=null;
+        PreparedStatement preparedStatement=null;
+
         String query = "insert into userdetails (fname, lname, dob, country, email, mnumber, username, password, city_id, group_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         DBConnector dbPool = (DBConnector) getServletContext().getAttribute("DBConnection");
         try {
             password = HashClass.SHA1(request.getParameter("password"));
-            Connection myConn = dbPool.getConn();
-            PreparedStatement preparedStatement = myConn.prepareStatement(query);
+            myConn = dbPool.getConn();
+            preparedStatement = myConn.prepareStatement(query);
             preparedStatement.setString(1, firstname);
             preparedStatement.setString(2, lastname);
             preparedStatement.setString(3, dob);
@@ -64,7 +67,23 @@ public class AddUser extends HttpServlet {
         } catch (SQLException e) {
             logger.error(e.getMessage());
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
+        }finally {
+            if (myConn != null){
+                try {
+                    myConn.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+
+            if (preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
         }
 
 
