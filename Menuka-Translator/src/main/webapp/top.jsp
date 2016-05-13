@@ -1,12 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-
-</head>
-
-<body>
 <div>
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -52,5 +43,3 @@
         $.ajax({url: "CountryInformation"});
     }
 </script>
-</body>
-</html>
