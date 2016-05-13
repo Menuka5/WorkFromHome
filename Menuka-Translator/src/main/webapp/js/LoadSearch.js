@@ -28,7 +28,7 @@ $(document).ready(function () {
                 search: false,
                 showColumns: false,
                 showRefresh: false,
-                height: 500,
+                height: 610,
                 minimumCountColumns: 2,
                 columns: [{
                     field: 'firstName',
@@ -67,6 +67,7 @@ $(document).ready(function () {
                 }, {
                     field: 'email',
                     title: 'Email',
+                    visible: false,
                     align: 'left',
                     valign: 'bottom',
                     sortable: true
@@ -142,6 +143,9 @@ window.operateEvents = {
         $("#email").val(datarecieve.email);
         $("#country").val(datarecieve.country);
         $("#username").val(datarecieve.username);
+        $("#date").val(datarecieve.dob);
+
+
 
         //alert(datarecieve.username);
 

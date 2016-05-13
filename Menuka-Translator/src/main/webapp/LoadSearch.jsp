@@ -17,6 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
 
     <script src="js/LoadSearch.js"></script>
+    <script src="js/UpdateUser.js"></script>
 
 </head>
 <body>
@@ -61,7 +62,7 @@
         <div class="modal-content">
 
             <div class="modal-body">
-                <form action="AddUser" method="post" class="form-horizontal" onsubmit="confirmPass();">
+                <form class="form-horizontal" action="UpdateUser" method="get">
                     <fieldset>
 
                         <!-- Text input-->
@@ -83,6 +84,8 @@
 
                             </div>
                         </div>
+
+                        <%--Birthday --%>
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="date">Date of Birth</label>
@@ -120,7 +123,7 @@
                             </div>
                         </div>
 
-                        <%--Birthday --%>
+
 
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="email">Email</label>
@@ -174,7 +177,7 @@
                             <label class="col-md-4 control-label" for="sbtn"></label>
 
                             <div class="col-md-4">
-                                <button id="sbtn" name="sbtn" class="btn btn-success" onclick="confirmPass()">Update user</button>
+                                <button id="sbtn" name="sbtn" class="btn btn-success" type="submit">Update user</button>
                             </div>
                         </div>
 
