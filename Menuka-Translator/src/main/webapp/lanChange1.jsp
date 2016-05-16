@@ -9,11 +9,9 @@
 </head>
 <body>
 
-<fmt:setLocale value="de"/>
-<fmt:bundle basename="languageFiles.Pop">
-    <fmt:message key="Name"/><br/>
-    <fmt:message key="Address"/><br/>
-    <fmt:message key="Number"/><br/>
-</fmt:bundle>
+<fmt:setLocale value="en" />
+<fmt:setBundle basename="testitems.Messages"/>
+<fmt:message key="index.translator" />
 </body>
 </html>
+
