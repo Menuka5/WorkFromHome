@@ -4,7 +4,7 @@
 
 <html>
 <fmt:setLocale value="en"/>
-<fmt:bundle basename="languageFiles.Language">
+<fmt:bundle basename="Language">
 <head>
     <title><fmt:message key="index.translator"/> <fmt:message key="index.login"/> <fmt:message key="index.page"/></title>
 
