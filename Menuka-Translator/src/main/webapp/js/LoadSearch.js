@@ -116,8 +116,8 @@ $(document).ready(function () {
                     valign: 'bottom',
                     sortable: true
                 }, {
-                    field: 'userRole1',
-                    title: 'User Role1',
+                    field: 'userRole',
+                    title: 'User Role',
                     align: 'left',
                     valign: 'bottom',
                     sortable: true
