@@ -23,7 +23,12 @@
 
     <script src="js/LoadSearch.js"></script>
     <script src="js/UpdateUser.js"></script>
-    <%--<script src="js/registration.js"></script>--%>
+    <script>
+        $(document).ready(function(){
+            $('#table').bootstrapTable('hideColumn', 'operate');
+
+        });
+    </script>
 
 </head>
 <body>
@@ -71,7 +76,7 @@
                 <form class="form-horizontal" action="UpdateUser" method="get">
                     <fieldset>
 
-                        <!-- Text input-->
+                        <%--First Name--%>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="fname"><fmt:message key="registration.First"/> <fmt:message key="registration.Name"/></label>
 
@@ -82,6 +87,7 @@
                             </div>
                         </div>
 
+                        <%--Last name--%>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="lname"><fmt:message key="registration.Last"/> <fmt:message key="registration.Name"/></label>
 
@@ -103,6 +109,7 @@
                             </div>
                         </div>
 
+                        <%--Country--%>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="selectbasic"><fmt:message key="registration.Country"/></label>
 
@@ -118,6 +125,7 @@
                             </div>
                         </div>
 
+                        <%--City--%>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="states"><fmt:message key="registration.City"/></label>
 
@@ -130,7 +138,7 @@
                         </div>
 
 
-
+                        <%--Email--%>
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="email"><fmt:message key="registration.Email"/></label>
 
@@ -178,7 +186,7 @@
                             <diV id="usernamemsg"></diV>
                         </div>
 
-                        <!-- Button -->
+                        <!-- Submit button -->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="sbtn"></label>
 

@@ -1,7 +1,3 @@
-/**
- * Created by hsenid on 5/12/16.
- */
-
 //Bootstrap table configurations
 
 $(document).ready(function () {
@@ -150,7 +146,8 @@ $(document).ready(function () {
             console.log(data);
         }
     })
-
+    //$("#table").hide();
+    $('#table').bootstrapTable('hideColumn', 'operate');
 });
 
 
@@ -182,10 +179,6 @@ window.operateEvents = {
         $("#country").val(datarecieve.country);
         $("#username").val(datarecieve.username);
         $("#date").val(datarecieve.dob);
-
-
-
-        //alert(datarecieve.username);
 
         var country = datarecieve.country;
         // Setting the City Option menu

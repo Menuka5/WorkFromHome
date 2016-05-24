@@ -17,25 +17,63 @@ import java.util.ArrayList;
 
 public class PermissionsSender extends HttpServlet{
     private final static Logger logger = LogManager.getLogger(PermissionsSender.class);
-    Connection myConn=null;
+    public static Connection myConn;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        DBConnector dbPool = (DBConnector) getServletContext().getAttribute("DBConnection");
 
-        try {
-            myConn = dbPool.getConn();
-        } catch (SQLException e) {
-            logger.error(e.getMessage());
-        }
+
     }
 
-    public String[] sendPermissions(String username){
+    public ArrayList<String> sendPermissions(String username){
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;
         String quary= "SELECT permission FROM userdetails INNER JOIN group_permission ON userdetails.group_id = group_permission.group_id INNER JOIN permissions ON permissions.permission_id = group_permission.permission_id WHERE userdetails.username = ?";
-        
+        ArrayList<String> permissions = new ArrayList<String>();
 
-        return new String[Integer.parseInt("s")];
+
+        try {
+            myConn = DBConnector.cpds.getConnection();
+            preparedStatement = myConn.prepareStatement(quary);
+            preparedStatement.setString(1, username);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                permissions.add(resultSet.getString("permission"));
+            }
+
+//            logger.error(permissions.size() + " Size worked!");
+
+        } catch (SQLException e) {
+            logger.error(e.getMessage());
+        }finally {
+
+            if (myConn != null){
+                try {
+                    myConn.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+
+            if (preparedStatement != null){
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+
+            if (resultSet != null){
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    logger.error(e.getMessage());
+                }
+            }
+        }
+
+        return permissions;
     }
 
 
