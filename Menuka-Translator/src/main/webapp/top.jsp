@@ -12,6 +12,8 @@
     <c:set var="checkAddUser" value="${false}"/>
     <c:set var="checkTranslate" value="${false}"/>
     <c:set var="checkSearchUser" value="${false}"/>
+    <c:set var="checkDeleteUser" value="${false}"/>
+    <c:set var="checkEditUser" value="${false}"/>
 
     <c:forEach var="vals" items='${permissions}'>
         <c:if test="${vals eq Translate}">
@@ -22,6 +24,12 @@
         </c:if>
         <c:if test="${vals eq SearchUser}">
             <c:set var="checkSearchUser" value="${true}"/>
+        </c:if>
+        <c:if test="${vals eq DeleteUser}">
+            <c:set var="checkDeleteUser" value="${true}"/>
+        </c:if>
+        <c:if test="${vals eq EditUser}">
+            <c:set var="checkEditUser" value="${true}"/>
         </c:if>
     </c:forEach>
 
